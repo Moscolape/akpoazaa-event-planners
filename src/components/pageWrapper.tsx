@@ -26,9 +26,9 @@ const PageWrapper: React.FC<PageWrapperProps> = ({ children }) => {
   };
 
   return (
-    <div className="w-full h-full custom-scrollbar-example relative">
+    <div className="w-full h-full custom-scrollbar-example relative backdrop">
       <NavLinks />
-      <div className="mt-20">{children}</div>
+      <div className="pt-20">{children}</div>
       <Footer />
 
       {/* Back to Top Button */}

@@ -62,7 +62,7 @@ export default function NavLinks() {
   const dynamicLinks = [...baseLinks];
 
   return (
-    <nav className="flex justify-between items-center px-4 py-2 fixed w-full top-0 z-50 bg-white shadow-md" >
+    <nav className="flex justify-between items-center px-4 py-2 w-full" >
       <Link to="/" className="logo">
         <img
           src={logo}
@@ -73,7 +73,6 @@ export default function NavLinks() {
         />
       </Link>
 
-      {/* Desktop Navigation */}
       <div className="hidden md:flex items-center space-x-4 font-Montserrat">
         {[...dynamicLinks].map((link) => (
           <Link
@@ -90,7 +89,6 @@ export default function NavLinks() {
         ))}
       </div>
 
-      {/* Mobile Menu Button */}
       <button
         onClick={() => setMenuOpen(true)}
         className="md:hidden p-2 rounded-md focus:outline-none"
@@ -98,7 +96,6 @@ export default function NavLinks() {
         <Menu size={32} />
       </button>
 
-      {/* Mobile Sliding Menu */}
       <motion.div
         ref={menuRef}
         initial={{ x: "100%" }}

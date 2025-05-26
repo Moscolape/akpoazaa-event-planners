@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect } from "react";
+import { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./index.css";
 import "./App.css";
@@ -12,24 +12,6 @@ const Contact = lazy(() => import("./pages/contact"));
 const Testimonials = lazy(() => import("./pages/testimonials"));
 
 function App() {
-  useEffect(() => {
-    const checkResetTime = () => {
-      const now = new Date();
-      const currentDay = now.getDay();
-      const currentHour = now.getHours();
-
-      if (currentDay === 6 && currentHour === 18) {
-        localStorage.removeItem("hasSubmitted");
-      }
-    };
-
-    checkResetTime();
-
-    const interval = setInterval(checkResetTime, 5 * 60 * 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <Suspense
       fallback={

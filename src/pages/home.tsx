@@ -63,23 +63,26 @@ const Home = () => {
       <div className="relative sm:h-[80vh] w-full font-Montserrat">
         <div className="absolute inset-0 bg-[#00000086] bg-opacity-60 z-0" />
 
-        <div className="relative z-10 flex flex-col sm:flex-row justify-between items-center h-full px-6 sm:px-10 sm:pt-10 pb-10 text-white w-full mx-auto">
+        <div className="relative z-10 flex flex-col sm:flex-row justify-between items-center h-full px-6 sm:px-10 pt-12 sm:pt-10 pb-10 text-white w-full mx-auto">
           <div className="text-center sm:text-left">
-            <span className="text-[#f69223] uppercase tracking-widest text-xs md:text-sm mb-2 block" data-aos="fade-down">
+            <span
+              className="text-[#f69223] uppercase tracking-widest text-xs md:text-sm mb-2 block"
+              data-aos="fade-down"
+            >
               Akpoazaa Event Planners
             </span>
             <h1
               className="text-xl sm:text-4xl md:text-5xl font-bold leading-snug md:leading-tight"
               data-aos="fade-down"
             >
-              Proffering Top-notch <br /> Event Planning and <br /> Management
+              Providing Top-notch <br /> Event Planning and <br /> Management
               Services
             </h1>
 
             <p className="my-5 sm:text-base max-w-xl mx-auto sm:mx-0">
               <Typewriter
                 words={[
-                  "What sets us apart is our commitment to quality, innovation, and client satisfaction. Your vision is our priority. Let's create some extraordinary memories together.",
+                  "What sets us apart is our commitment to quality delivery and client satisfaction. Your vision is our priority. Let's create some extraordinary memories together.",
                 ]}
                 loop={1}
                 typeSpeed={50}
@@ -95,9 +98,11 @@ const Home = () => {
               <button className="bg-[#f69223] text-white px-20 py-3 rounded font-medium hover:bg-[#a6cc39] transition transform hover:-translate-y-1 cursor-pointer">
                 Book Us
               </button>
-              <button className="bg-[#02a69d] px-20 py-3 rounded font-medium hover:bg-[#be202f] text-white transition transform hover:-translate-y-1 cursor-pointer">
-                Our Services
-              </button>
+              <a href="/services">
+                <button className="bg-[#02a69d] px-20 py-3 rounded font-medium hover:bg-[#be202f] text-white transition transform hover:-translate-y-1 cursor-pointer">
+                  Our Services
+                </button>
+              </a>
             </div>
           </div>
 

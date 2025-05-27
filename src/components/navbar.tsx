@@ -62,11 +62,12 @@ export default function NavLinks() {
   const dynamicLinks = [...baseLinks];
 
   const location = useLocation();
-  const isHome = location.pathname === "/"
+  const isHome = location.pathname === "/";
+  const isContact = location.pathname === "/contact";
 
   return (
     <div className="relative">
-      {isHome && (
+      {(isHome || isContact) && (
         <div className="absolute inset-0 bg-[#00000086] bg-opacity-60 z-0" />
       )}
 
@@ -86,10 +87,10 @@ export default function NavLinks() {
             <Link
               key={link.name}
               to={link.href}
-              className={`px-4 py-2 ${isHome && 'text-white'} hover:text-[#be202f] hover:font-semibold hover:scale-110 rounded-md ${
+              className={`px-4 py-2 hover:text-[#be202f] hover:font-semibold hover:scale-110 rounded-md ${
                 currentPath.includes(link.href)
-                  ? "text-[#be202f] font-bold"
-                  : "font-medium"
+                  ? "text-[#be202f] font-bold scale-110"
+                  : "font-medium text-white"
               }`}
             >
               {link.name}
@@ -101,7 +102,7 @@ export default function NavLinks() {
           onClick={() => setMenuOpen(true)}
           className="md:hidden p-2 rounded-md focus:outline-none"
         >
-          <Menu size={32} />
+          <Menu size={32} className="text-white" />
         </button>
 
         <motion.div

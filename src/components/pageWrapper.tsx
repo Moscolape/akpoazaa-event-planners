@@ -2,6 +2,7 @@ import { FaArrowUp } from "react-icons/fa";
 import Footer from "./footer";
 import NavLinks from "./navbar";
 import { ReactNode, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 type PageWrapperProps = {
   children: ReactNode;
@@ -10,28 +11,30 @@ type PageWrapperProps = {
 const PageWrapper: React.FC<PageWrapperProps> = ({ children }) => {
   const [isVisible, setIsVisible] = useState(false);
 
-  // Handle scroll visibility for "Back to Top" button
   useEffect(() => {
     const toggleVisibility = () => {
-      setIsVisible(window.scrollY > 300); // Show when scrolled 300px
+      setIsVisible(window.scrollY > 300);
     };
 
     window.addEventListener("scroll", toggleVisibility);
     return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
 
-  // Scroll to top function
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const location = useLocation();
+  const isHome = location.pathname === "/";
+
   return (
-    <div className="w-full h-full custom-scrollbar-example relative backdrop">
-      <NavLinks />
-      <div className="pt-20">{children}</div>
+    <div className="w-full h-full custom-scrollbar-example relative">
+      <div className={`${isHome && "landing"}`}>
+        <NavLinks />
+        <div className="">{children}</div>
+      </div>
       <Footer />
 
-      {/* Back to Top Button */}
       {isVisible && (
         <button
           onClick={scrollToTop}

@@ -1,5 +1,9 @@
-import { FaFacebook, FaInstagram, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
-import { Link, useLocation } from "react-router-dom";
+import {
+  FaFacebook,
+  FaInstagram,
+  FaMapMarkerAlt,
+  FaPhoneAlt,
+} from "react-icons/fa";
 import { useEffect } from "react";
 import initializeAOS from "../utils/aos-init";
 
@@ -42,13 +46,9 @@ export default function Footer() {
     initializeAOS();
   }, []);
 
-  const location = useLocation();
-
   return (
     <div
-      className={`w-full bg-[#be202f] text-white text-body1 font-Montserrat ${
-        location.pathname.includes("admin") ? "mt-0" : "mt-20"
-      }`}
+      className={`w-full bg-[#be202f] text-white text-body1 font-Montserrat`}
     >
       <div className="flex sm:flex-row flex-col justify-between items-start sm:p-10 p-3">
         <div className="sm:w-1/3" data-aos="fade-up">
@@ -64,34 +64,31 @@ export default function Footer() {
           </div>
           <div className="text-h6 flex mt-5">
             {socialMediaLinks.map((link, index) => (
-              <Link
-                to={link.href}
+              <a
+                href={link.href}
                 key={index}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mr-4 text-2xl"
               >
                 {link.icon}
-              </Link>
+              </a>
             ))}
           </div>
         </div>
-        <div
-          className="sm:w-1/3 sm:mt-0 mt-10"
-          data-aos="fade-up"
-        >
+        <div className="sm:w-1/3 sm:mt-0 mt-10" data-aos="fade-up">
           <div className="mx-auto sm:w-1/3">
             <h1 className="text-lg font-bold">QUICK LINKS</h1>
             <br />
             <div className="flex flex-col">
               {quickLinks.map((link, index) => (
-                <Link
-                  to={link.href}
+                <a
+                  href={link.href}
                   key={index}
                   className="mb-2 text-[1rem] hover:scale-105"
                 >
                   {link.text}
-                </Link>
+                </a>
               ))}
             </div>
           </div>

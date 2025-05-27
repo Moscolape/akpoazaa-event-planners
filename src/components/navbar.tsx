@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { logo } from "../constants/assets";
 
@@ -61,68 +61,77 @@ export default function NavLinks() {
 
   const dynamicLinks = [...baseLinks];
 
+  const location = useLocation();
+  const isHome = location.pathname === "/"
+
   return (
-    <nav className="flex justify-between items-center px-4 py-2 w-full" >
-      <Link to="/" className="logo">
-        <img
-          src={logo}
-          alt="My Logo"
-          width={logoSize}
-          height={logoSize}
-          className="scale-125"
-        />
-      </Link>
+    <div className="relative">
+      {isHome && (
+        <div className="absolute inset-0 bg-[#00000086] bg-opacity-60 z-0" />
+      )}
 
-      <div className="hidden md:flex items-center space-x-4 font-Montserrat">
-        {[...dynamicLinks].map((link) => (
-          <Link
-            key={link.name}
-            to={link.href}
-            className={`px-4 py-2 text-h6 hover:text-[#be202f] hover:scale-110 rounded-md ${
-              currentPath.includes(link.href)
-                ? "text-[#be202f] font-bold"
-                : "font-medium"
-            }`}
-          >
-            {link.name}
-          </Link>
-        ))}
-      </div>
+      <nav className="flex justify-between items-center sm:px-10 px-4 w-full py-4 relative z-20">
+        <Link to="/" className="logo">
+          <img
+            src={logo}
+            alt="My Logo"
+            width={logoSize}
+            height={logoSize}
+            className="scale-125"
+          />
+        </Link>
 
-      <button
-        onClick={() => setMenuOpen(true)}
-        className="md:hidden p-2 rounded-md focus:outline-none"
-      >
-        <Menu size={32} />
-      </button>
-
-      <motion.div
-        ref={menuRef}
-        initial={{ x: "100%" }}
-        animate={{ x: isMenuOpen ? 0 : "100%" }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="fixed inset-0 bg-white bg-opacity-90 z-50 flex flex-col items-center justify-center text-black"
-      >
-        <button
-          onClick={() => setMenuOpen(false)}
-          className="absolute top-3 right-3"
-        >
-          <X size={40} className="text-[#be202f]" />
-        </button>
-
-        <div className="space-y-6 text-center flex flex-col justify-center font-Urbanist">
+        <div className="hidden md:flex items-center space-x-4 font-Montserrat">
           {[...dynamicLinks].map((link) => (
             <Link
               key={link.name}
               to={link.href}
-              className="text-xl font-semibold hover:text-[#f69223] transition"
-              onClick={() => setMenuOpen(false)}
+              className={`px-4 py-2 ${isHome && 'text-white'} hover:text-[#be202f] hover:font-semibold hover:scale-110 rounded-md ${
+                currentPath.includes(link.href)
+                  ? "text-[#be202f] font-bold"
+                  : "font-medium"
+              }`}
             >
               {link.name}
             </Link>
           ))}
         </div>
-      </motion.div>
-    </nav>
+
+        <button
+          onClick={() => setMenuOpen(true)}
+          className="md:hidden p-2 rounded-md focus:outline-none"
+        >
+          <Menu size={32} />
+        </button>
+
+        <motion.div
+          ref={menuRef}
+          initial={{ x: "100%" }}
+          animate={{ x: isMenuOpen ? 0 : "100%" }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          className="fixed inset-0 bg-white bg-opacity-90 z-50 flex flex-col items-center justify-center text-black"
+        >
+          <button
+            onClick={() => setMenuOpen(false)}
+            className="absolute top-3 right-3"
+          >
+            <X size={40} className="text-[#be202f]" />
+          </button>
+
+          <div className="space-y-6 text-center flex flex-col justify-center font-Urbanist">
+            {[...dynamicLinks].map((link) => (
+              <Link
+                key={link.name}
+                to={link.href}
+                className="text-xl font-semibold hover:text-[#f69223] transition"
+                onClick={() => setMenuOpen(false)}
+              >
+                {link.name}
+              </Link>
+            ))}
+          </div>
+        </motion.div>
+      </nav>
+    </div>
   );
 }

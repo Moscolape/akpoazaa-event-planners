@@ -1,9 +1,11 @@
 import PageWrapper from "../components/pageWrapper";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import initializeAOS from "../utils/aos-init";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { Locate, Mail, MapPin, PhoneCall } from "lucide-react";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
+import axios from "axios";
+import SuccessModal from "../components/successmodal";
 
 interface ContactFormData {
   name: string;
@@ -29,8 +31,32 @@ const Contact = () => {
 
   const {
     register,
+    reset,
+    handleSubmit,
     formState: { errors },
   } = useForm<ContactFormData>();
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  const onSubmit: SubmitHandler<ContactFormData> = async (data) => {
+    setIsSubmitting(true);
+    try {
+      const response = await axios.post<{ message: string }>(
+        "https://akpoazaa-event-backend.onrender.com/api/v1/contact",
+        data
+      );
+
+      if (response.status === 200) {
+        reset();
+        setShowModal(true);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <PageWrapper>
@@ -62,7 +88,8 @@ const Contact = () => {
             </p>
           </div>
           <form
-            className="space-y-4 mt-5 sm:mt-0 sm:ml-10 bg-white sm:rounded-lg sm:shadow sm:p-5 p-3"
+            onSubmit={handleSubmit(onSubmit)}
+            className="space-y-4 mt-5 sm:mt-0 sm:ml-10 bg-white sm:rounded-lg sm:shadow sm:p-5 p-3 sm:w-1/2"
             data-aos="fade-up"
           >
             <input
@@ -97,14 +124,44 @@ const Contact = () => {
 
             <button
               type="submit"
-              className="w-full bg-[#f69223] text-white hover:bg-[#b37127] p-2 rounded cursor-pointer text-bounce"
+              disabled={isSubmitting}
+              className="w-full bg-[#f69223] text-white hover:bg-[#b37127] flex items-center justify-center p-2 gap-2 rounded cursor-pointer text-bounce disabled:opacity-30 disabled:cursor-not-allowed"
             >
-              Send
+              {isSubmitting && (
+                <svg
+                  className="animate-spin h-4 w-4 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  />
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                  />
+                </svg>
+              )}
+              {isSubmitting ? "Sending..." : "Send"}{" "}
             </button>
           </form>
+          {showModal && (
+            <SuccessModal text="You have sent us a message! We'll get back to you ASAP!!" />
+          )}
         </div>
-        <div className="flex sm:flex-row flex-col mt-14 sm:px-0">
-          <div className="sm:w-1/2 h-[300px] sm:h-auto" data-aos="zoom-in" data-aos-delay={300}>
+        <div className="flex sm:flex-row-reverse flex-col mt-14 sm:px-0">
+          <div
+            className="sm:w-1/2 h-[300px] sm:h-auto"
+            data-aos="zoom-in"
+            data-aos-delay={300}
+          >
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.2712314922596!2d7.075312974750628!3d6.227926893760229!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1043828948fc4ed5%3A0xb36cf597b082136a!2sTotal%20Filling%20Station!5e0!3m2!1sen!2sng!4v1747497285354!5m2!1sen!2sng"
               className="w-full h-full"
@@ -130,8 +187,9 @@ const Contact = () => {
               <p className="flex items-center">
                 <MapPin className="w-6 h-6 text-[#f69223]" />
                 <span className="text-sm inline-block ml-3">
-                  Suite B6 Millennium Plaza <br />By Total Filling Station, Aroma
-                  Junction, <br /> Awka, Anambra State.
+                  Suite B6 Millennium Plaza <br />
+                  By Total Filling Station, Aroma Junction, <br /> Awka, Anambra
+                  State.
                 </span>
               </p>
               <br />

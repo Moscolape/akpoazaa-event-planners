@@ -115,7 +115,7 @@ const Contact = () => {
             />
           </div>
           <div className="p-3 sm:p-10 backdrop sm:w-1/2 font-Montserrat">
-            <div data-aos="flip-down">
+            <div data-aos="flip-down" className="my-10 sm:my-0">
               <h1 className="text-2xl font-Prism text-[#f69223] font-semibold flex items-center">
                 <Locate className="w-6 h-6 text-[#f69223] mr-2" /> Location
               </h1>

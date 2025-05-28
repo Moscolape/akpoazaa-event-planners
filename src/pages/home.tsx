@@ -82,7 +82,7 @@ const Home = () => {
             <p className="my-5 sm:text-base max-w-xl mx-auto sm:mx-0">
               <Typewriter
                 words={[
-                  "What sets us apart is our commitment to quality delivery and client satisfaction. Your vision is our priority. Let's create some extraordinary memories together.",
+                  "What sets us apart is our commitment to quality delivery and client satisfaction. Your vision is our priority. Let's create some beautiful memories together.",
                 ]}
                 loop={1}
                 typeSpeed={50}
@@ -95,11 +95,11 @@ const Home = () => {
               className="mt-6 flex flex-col sm:flex-row justify-center sm:justify-start gap-4"
               data-aos="fade-up"
             >
-              <button className="bg-[#f69223] text-white px-20 py-3 rounded font-medium hover:bg-[#a6cc39] transition transform hover:-translate-y-2 cursor-pointer">
+              <button className="bg-[#f69223] text-white px-20 py-3 rounded font-medium hover:bg-[#be202f] transition transform hover:-translate-y-2 cursor-pointer">
                 Book Us
               </button>
               <a href="/services">
-                <button className="bg-[#02a69d] px-20 py-3 rounded font-medium hover:bg-[#be202f] text-white transition transform hover:-translate-y-2 cursor-pointer">
+                <button className="bg-[#02a69d] px-20 py-3 rounded font-medium hover:bg-[#a6cc39] text-white transition transform hover:-translate-y-2 cursor-pointer">
                   Our Services
                 </button>
               </a>

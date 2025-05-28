@@ -39,6 +39,10 @@ const quickLinks = [
     text: "Blog",
     href: "/blog",
   },
+  {
+    text: "Contact Us",
+    href: "/contact",
+  },
 ];
 
 export default function Footer() {

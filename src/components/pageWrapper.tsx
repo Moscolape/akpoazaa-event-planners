@@ -27,10 +27,11 @@ const PageWrapper: React.FC<PageWrapperProps> = ({ children }) => {
   const location = useLocation();
   const isHome = location.pathname === "/";
   const isContact = location.pathname === "/contact";
+  const isService = location.pathname === "/services";
 
   return (
     <div className="w-full h-full custom-scrollbar-example relative">
-      <div className={`${isHome ? "landing" : isContact ? 'landing2' : ''}`}>
+      <div className={`${isHome ? "landing" : isContact ? 'landing2' : isService ? 'landing3' : ''}`}>
         <NavLinks />
         <div className="">{children}</div>
       </div>

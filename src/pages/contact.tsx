@@ -39,6 +39,20 @@ const Contact = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const onSubmit: SubmitHandler<ContactFormData> = async (data) => {
     setIsSubmitting(true);
@@ -66,7 +80,7 @@ const Contact = () => {
         <div className="absolute inset-0 bg-[#00000086] flex items-center justify-center text-center p-4 font-Montserrat">
           <div className="text-white space-y-4 max-w-3xl">
             <h1
-              className="text-2xl sm:text-5xl font-bold"
+              className="text-2xl sm:text-5xl font-bold sm:-mt-30"
               data-aos="fade-right"
             >
               Contact Us
@@ -74,7 +88,12 @@ const Contact = () => {
           </div>
         </div>
       </main>
-      <section className="sm:pt-10 pt-5 bg-white">
+      <section
+        className="sm:pt-35 pt-5 bg-white sm:-mt-40"
+        style={{
+          clipPath: isMobile ? "" : "polygon(50% 0, 100% 13%, 100% 100%, 0 100%, 0 13%)",
+        }}
+      >
         <div className="sm:w-4/5 mx-auto font-Montserrat sm:flex mt-5">
           <div className="sm:w-1/2 px-3 sm:px-0 relative" data-aos="fade-up">
             <h1 className="text-2xl font-Prism text-[#f69223] font-semibold text-center sm:text-left">

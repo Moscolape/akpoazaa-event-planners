@@ -64,10 +64,11 @@ export default function NavLinks() {
   const location = useLocation();
   const isHome = location.pathname === "/";
   const isContact = location.pathname === "/contact";
+  const isService = location.pathname === "/services";
 
   return (
     <div className="relative">
-      {(isHome || isContact) && (
+      {(isHome || isContact || isService) && (
         <div className="absolute inset-0 bg-[#00000086] bg-opacity-60 z-0" />
       )}
 
@@ -102,7 +103,7 @@ export default function NavLinks() {
           onClick={() => setMenuOpen(true)}
           className="md:hidden p-2 rounded-md focus:outline-none"
         >
-          <Menu size={32} className={`${(isHome || isContact) ? 'text-white' : 'text-black'}`} />
+          <Menu size={32} className={`${(isHome || isContact || isService) ? 'text-white' : 'text-black'}`} />
         </button>
 
         <motion.div

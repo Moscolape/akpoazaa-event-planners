@@ -102,7 +102,7 @@ export default function NavLinks() {
           onClick={() => setMenuOpen(true)}
           className="md:hidden p-2 rounded-md focus:outline-none"
         >
-          <Menu size={32} className="text-white" />
+          <Menu size={32} className={`${(isHome || isContact) ? 'text-white' : 'text-black'}`} />
         </button>
 
         <motion.div

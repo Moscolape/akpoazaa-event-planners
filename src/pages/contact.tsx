@@ -6,6 +6,7 @@ import { Locate, Mail, MapPin, PhoneCall } from "lucide-react";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 import axios from "axios";
 import SuccessModal from "../components/successmodal";
+import { logo } from "../constants/assets";
 
 interface ContactFormData {
   name: string;
@@ -75,7 +76,7 @@ const Contact = () => {
       </main>
       <section className="sm:pt-10 pt-5 bg-white">
         <div className="sm:w-4/5 mx-auto font-Montserrat sm:flex mt-5">
-          <div className="sm:w-1/2 px-3 sm:px-0" data-aos="fade-up">
+          <div className="sm:w-1/2 px-3 sm:px-0 relative" data-aos="fade-up">
             <h1 className="text-2xl font-Prism text-[#f69223] font-semibold text-center sm:text-left">
               Get In Touch
             </h1>
@@ -86,6 +87,11 @@ const Contact = () => {
               If you have any concerns to share or enquiries to make, send us a
               message and we'd get back to you before 24hrs.
             </p>
+            <img
+              src={logo}
+              alt="watermark"
+              className="absolute -top-15 sm:top-[40%] sm:right-[40%] right-20 w-60 opacity-5 pointer-events-none z-30"
+            />
           </div>
           <form
             onSubmit={handleSubmit(onSubmit)}

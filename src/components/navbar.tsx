@@ -89,7 +89,7 @@ export default function NavLinks() {
               to={link.href}
               className={`px-4 py-2 hover:text-[#be202f] hover:font-semibold hover:scale-110 rounded-md ${
                 currentPath.includes(link.href)
-                  ? "text-[#be202f] font-bold scale-110"
+                  ? "text-[#be202f] p-2 bg-white font-bold scale-110"
                   : "font-medium text-white"
               }`}
             >

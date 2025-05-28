@@ -53,7 +53,7 @@ const Contact = () => {
             <h1 className="text-2xl font-Prism text-[#f69223] font-semibold text-center sm:text-left">
               Get In Touch
             </h1>
-            <h2 className="text-3xl my-5 font-semibold text-center sm:text-left">
+            <h2 className="text-xl sm:text-3xl my-5 font-semibold text-center sm:text-left">
               Have an enquiry or feedback?
             </h2>
             <p className="text-sm text-gray-500">
@@ -103,8 +103,8 @@ const Contact = () => {
             </button>
           </form>
         </div>
-        <div className="flex mt-14">
-          <div className="w-1/2" data-aos="zoom-in" data-aos-delay={300}>
+        <div className="flex sm:flex-row flex-col mt-14 sm:px-0">
+          <div className="sm:w-1/2 h-[300px] sm:h-auto" data-aos="zoom-in" data-aos-delay={300}>
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.2712314922596!2d7.075312974750628!3d6.227926893760229!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1043828948fc4ed5%3A0xb36cf597b082136a!2sTotal%20Filling%20Station!5e0!3m2!1sen!2sng!4v1747497285354!5m2!1sen!2sng"
               className="w-full h-full"
@@ -114,12 +114,12 @@ const Contact = () => {
               referrerPolicy="no-referrer-when-downgrade"
             />
           </div>
-          <div className="p-10 backdrop w-1/2 font-Montserrat">
+          <div className="p-3 sm:p-10 backdrop sm:w-1/2 font-Montserrat">
             <div data-aos="flip-down">
-              <h1 className="text-2xl font-Prism text-[#f69223] font-semibold text-center sm:text-left flex items-center">
+              <h1 className="text-2xl font-Prism text-[#f69223] font-semibold flex items-center">
                 <Locate className="w-6 h-6 text-[#f69223] mr-2" /> Location
               </h1>
-              <h2 className="text-3xl my-5 font-semibold text-center sm:text-left">
+              <h2 className="text-xl sm:text-3xl my-5 font-semibold">
                 We're here to help
               </h2>
               <p className="text-sm text-gray-500">
@@ -130,8 +130,8 @@ const Contact = () => {
               <p className="flex items-center">
                 <MapPin className="w-6 h-6 text-[#f69223]" />
                 <span className="text-sm inline-block ml-3">
-                  Suite B6 Millennium Plaza by Total Filling Station, Aroma
-                  Junction, Awka, Anambra State.
+                  Suite B6 Millennium Plaza <br />By Total Filling Station, Aroma
+                  Junction, <br /> Awka, Anambra State.
                 </span>
               </p>
               <br />
@@ -149,7 +149,7 @@ const Contact = () => {
                 </span>
               </p>
               <br />
-              <h2 className="text-3xl my-5 font-semibold text-center sm:text-left">
+              <h2 className="text-xl sm:text-3xl sm:my-5 font-semibold">
                 Follow our social media platforms
               </h2>
               <div className="text-h6 flex mt-5">
